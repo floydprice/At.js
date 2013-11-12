@@ -55,7 +55,7 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-coffee');
-  grunt.loadNpmTasks('grunt-jasmine-runner');
+  //grunt.loadNpmTasks('grunt-jasmine-runner');
   grunt.loadNpmTasks('grunt-contrib-mincss');
 
   // Default task.
