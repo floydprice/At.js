@@ -195,11 +195,16 @@
       };
 
       Controller.prototype.catch_query = function() {
-        var caret_pos, content, end, query, start, subtext;
+        var caret_pos, content, end, query, selection, start, subtext;
         content = this.content();
         caret_pos = this.$inputor.caret('pos');
         subtext = content.slice(0, caret_pos);
-        query = this.callbacks("matcher").call(this, this.at, subtext, this.get_opt('start_with_space'));
+        selection = window.getSelection();
+        if (selection.extentOffset === 1) {
+          query = this.callbacks("matcher").call(this, this.at, subtext, false);
+        } else {
+          query = this.callbacks("matcher").call(this, this.at, subtext, this.get_opt('start_with_space'));
+        }
         if (typeof query === "string" && query.length <= this.get_opt('max_len', 20)) {
           start = caret_pos - query.length;
           end = start + query.length;
