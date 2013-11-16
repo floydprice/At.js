@@ -278,7 +278,7 @@
         $inputor = this.$inputor;
         if ($inputor.attr('contentEditable') === 'true') {
           class_name = "atwho-view-flag atwho-view-flag-" + (this.get_opt('alias') || this.at);
-          content_node = "" + content + "<span contenteditable='false'>&nbsp;<span>";
+          content_node = "" + content;
           insert_node = "<span contenteditable='false' class='" + class_name + "'>" + content_node + "</span>";
           $insert_node = $(insert_node).data('atwho-data-item', $li.data('item-data'));
           if (document.selection) {
@@ -297,14 +297,14 @@
           range.setStart(range.endContainer, Math.max(pos, 0));
           range.setEnd(range.endContainer, range.endOffset);
           range.deleteContents();
-          range.insertNode($insert_node[0] + "&nbsp;");
+          range.insertNode($insert_node[0]);
           range.collapse(false);
           sel = window.getSelection();
           sel.removeAllRanges();
           sel.addRange(range);
         } else if (range = this.get_ie_range()) {
           range.moveStart('character', this.query.end_pos - this.query.head_pos - this.at.length);
-          range.pasteHTML($insert_node[0] + "&nbsp;");
+          range.pasteHTML($insert_node[0]);
           range.collapse(false);
           range.select();
         }
