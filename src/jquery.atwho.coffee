@@ -263,7 +263,8 @@
         #       to make it work batter.
         # REF:  http://stackoverflow.com/questions/15535933/ie-html1114-error-with-custom-cleditor-button?answertab=votes#tab-top
         range.moveStart('character', @query.end_pos - @query.head_pos - @at.length)
-        range.pasteHTML($insert_node[0])
+        range.pasteHTML($insert_node[0] + "&nbsp;")
+
         range.collapse(false)
         range.select()
       $inputor.focus()
